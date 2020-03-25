@@ -29,5 +29,3 @@ jobs:
       with:
           secrets: "GGGGG"
           args: "-avzr -e 'ssh -oHostKeyAlgorithms=+ssh-dss' --delete --exclude .htaccess --exclude ${{ GITHUB_WORKSPACE }}/ sshacs@efix.rsync.upload.akamai.com:/295220/test-netstorage
-
-      
