@@ -26,7 +26,7 @@ jobs:
 
 
     - name: deploy to server
-      uses: yossi-nagar/rsync-deploy@v1.0
+      uses: yossi-nagar/rsync-deploy
       env:
           DEPLOY_KEY: ${{ secrets.AKAMAI_NETSTORAGE_KEY }}
           ARGS: "-arvz -e \"ssh -2 -oHostKeyAlgorithms=+ssh-dss\""
