@@ -26,7 +26,7 @@ jobs:
 
 
     - name: deploy to server
-      uses: yossi-nagar/rsync-deploy
+      uses: cliotech-web/rsync-netstorage@v1.0
       env:
           DEPLOY_KEY: ${{ secrets.AKAMAI_NETSTORAGE_KEY }}
           ARGS: "-arvz -e \"ssh -2 -oHostKeyAlgorithms=+ssh-dss\""
