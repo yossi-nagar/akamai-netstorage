@@ -23,14 +23,15 @@ jobs:
     # Runs a single command using the runners shell
     - name: Run a one-line script
       run: echo Hello, world!
- 
 
-    - name: Deploy to Akamai Nestorage
-      uses: "contention/action-rsync-deploy@master"
-      secrets: [ ${{ secrets.AKAMAI_NETSTORAGE_KEY }} ]
-      args:
-        - "-avzr --delete"
-        - "-e \"ssh -oHostKeyAlgorithms=+ssh-dss\""
-        - "--exclude .htaccess"
-        - $GITHUB_WORKSPACE
-        - "sshacs@efix.rsync.upload.akamai.com:/295520/test-netstorage"
+
+    - name: deploy to server
+        uses: AEnterprise/rsync-deploy@v1.0
+        env:
+          DEPLOY_KEY: ${{ secrets.AKAMAI_NETSTORAGE_KEY }}
+          ARGS: "-arvz -e \"ssh -oHostKeyAlgorithms=+ssh-dss\""
+          SERVER_PORT: 22
+          FOLDER: "./"
+          SERVER_IP: efix.rsync.upload.akamai.com
+          USERNAME: sshacs
+          SERVER_DESTINATION: "/295520/github-actions-deploy"
