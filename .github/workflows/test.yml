@@ -26,8 +26,8 @@ jobs:
 
 
     - name: deploy to server
-        uses: AEnterprise/rsync-deploy@v1.0
-        env:
+      uses: AEnterprise/rsync-deploy@v1.0
+      env:
           DEPLOY_KEY: ${{ secrets.AKAMAI_NETSTORAGE_KEY }}
           ARGS: "-arvz -e \"ssh -oHostKeyAlgorithms=+ssh-dss\""
           SERVER_PORT: 22
