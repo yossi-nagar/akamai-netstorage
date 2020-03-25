@@ -27,5 +27,10 @@ jobs:
     - uses: "contention/action-rsync-deploy@master"
     - name: Deploy to Akamai Nestorage
       with:
-          secrets: "GGGGG"
-          args: "-avzr -e 'ssh -oHostKeyAlgorithms=+ssh-dss' --delete --exclude .htaccess --exclude ${{ GITHUB_WORKSPACE }}/ sshacs@efix.rsync.upload.akamai.com:/295220/test-netstorage
+          secrets: [ "AKAMAI_NETSTORAGE_KEY" ]
+          args:
+            - "-avzr --delete"
+            - "-e \"ssh -oHostKeyAlgorithms=+ssh-dss\""
+            - "--exclude .htaccess"
+            - {{ $GITHUB_WORKSPACE }}
+            - "sshacs@efix.rsync.upload.akamai.com:/295520/test-netstorage"
