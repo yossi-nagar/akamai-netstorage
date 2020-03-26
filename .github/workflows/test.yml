@@ -31,7 +31,7 @@ jobs:
           DEPLOY_KEY: ${{ secrets.AKAMAI_NETSTORAGE_KEY }}
           ARGS: "-arvz"
           SERVER_PORT: 22
-          FOLDER: "./"
+          FOLDER: ""
           SERVER_IP: efix.rsync.upload.akamai.com
           USERNAME: sshacs
           SERVER_DESTINATION: "/295520/github-actions-deploy"
