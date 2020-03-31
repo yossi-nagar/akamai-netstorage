@@ -24,14 +24,13 @@ jobs:
     - name: Run a one-line script
       run: echo Hello, world!
 
-
-    - name: deploy to server
-      uses: yossi-nagar/rsync-deploy@master
+    - name: deploy to AWS
+      uses: jakejarvis/s3-sync-action@v0.5.1
+      with:
+        args:  --acl public-read --follow-symlinks --delete
       env:
-          DEPLOY_KEY: ${{ secrets.AKAMAI_NETSTORAGE_KEY }}
-          ARGS: "-avz"
-          SERVER_PORT: 22
-          FOLDER: ""
-          SERVER_IP: efix.rsync.upload.akamai.com
-          USERNAME: sshacs
-          SERVER_DESTINATION: "/295520/github-actions-deploy"
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-west-1'   # optional: defaults to us-east-1
+          SOURCE_DIR: 'public'      # optional: defaults to entire repository
